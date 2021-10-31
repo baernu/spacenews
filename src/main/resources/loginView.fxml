@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox fx:id="root" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox styleClass="left" >
+         <children>
+            <Label text="Username" />
+            <TextField fx:id="usernameText"/>
+         </children>
+      </HBox>
+      <HBox styleClass="left" >
+         <children>
+            <Label text="Password" />
+            <PasswordField fx:id="passwordText"/>
+         </children>
+      </HBox>
+      <HBox styleClass="center" >
+         <children>
+            <Button defaultButton="true" text="Login" onAction="#login" />
+            <Button text="Cancel" onAction="#cancel" />
+         </children>
+      </HBox>
+      <HBox styleClass="center" >
+         <children>
+            <Label fx:id="errorLabel"/>
+         </children>
+      </HBox>
+   </children>
+</VBox>

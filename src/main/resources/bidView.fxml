@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:id="root">
+	<children>
+		<HBox styleClass="center">
+			<children>
+				<Label styleClass="title" fx:id="titleLabel" />
+			</children>
+		</HBox>
+		<HBox styleClass="left">
+			<children>
+				<Label text="Your Bid" />
+				<TextField fx:id="bidField" />
+			</children>
+		</HBox>
+		<HBox styleClass="center">
+			<children>
+				<Button defaultButton="true" text="Place Bid" fx:id="placeBidButton" onAction="#placeBid/>
+				<Button text = "Logout" onAction="#logout"/>
+			</children>
+		</HBox>
+		<HBox styleClass="center">
+			<children>
+				<Label fx:id="messageLabel" />
+			</children>
+		</HBox>
+	</children>
+</VBox>
