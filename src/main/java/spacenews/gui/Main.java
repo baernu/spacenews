@@ -15,12 +15,15 @@ public class Main extends Application {
 
 	public void start(Stage stage) {
 		try {
-			AuctionAdminController auctionAdminController = new AuctionAdminController();
-			FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("auctionAdminView.fxml"
+			NewsController newsController = new NewsController();
+//			AuctionAdminController auctionAdminController = new AuctionAdminController();
+//			FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("auctionAdminView.fxml"
+			FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("news.fxml"
 			), I18n.getResourceBundle(new Locale("labels","de")));
-			loader.setController(auctionAdminController);
+//			loader.setController(auctionAdminController);
+			loader.setController(newsController);
 			Parent root = loader.load();
-			Scene scene = new Scene(root, 500, 350);
+			Scene scene = new Scene(root, 600, 500);
 			URL url = getClass().getClassLoader().getResource("application.css");
 			scene.getStylesheets().add(url.toExternalForm());
 			stage.setOnCloseRequest(e -> {
