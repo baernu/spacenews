@@ -1,58 +1,124 @@
 package spacenews.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.core.JacksonException;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.ObjectCodec;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Articles {
 
-    @JsonProperty("id")
     private String id;
 
-    @JsonProperty("title")
     private String title;
 
-    @JsonProperty("url")
     private String url;
 
-    @JsonProperty("imageUrl")
     private String imageUrl;
 
-    @JsonProperty("newsSite")
     private String newsSite;
 
-    @JsonProperty("Summary")
     private String summary;
 
-    @JsonProperty("publishedAt")
     private String publishedAt;
 
-    @JsonProperty("updatedAt")
     private String updatedAt;
 
-    @JsonProperty("featured")
     private String featured;
 
-    @JsonProperty("Launches")
-    private List<String> launches;
+    private Providers launches;
 
-    @JsonProperty("events")
-    private List<String> events;
+    private Providers events;
 
-    public Articles(String id, String title, String url, String imageUrl, String newsSite,
-                    String summary, String publishedAt, String updatedAt, String featured,
-                    List<String> launches, List<String> events) {
-        this.id = id;
-        this.title = title;
-        this.url = url;
-        this.imageUrl = imageUrl;
-        this.newsSite = newsSite;
-        this.summary = summary;
-        this.publishedAt = publishedAt;
-        this.updatedAt = updatedAt;
-        this.featured = featured;
-        this.launches = launches;
-        this.events = events;
+
+     @JsonCreator
+     public Articles(
+             @JsonProperty("id")  String id,
+             @JsonProperty("title") String title,
+             @JsonProperty("url") String url,
+             @JsonProperty("imageUrl")  String imageUrl,
+             @JsonProperty("newsSite") String newsSite,
+             @JsonProperty("summary") String summary,
+             @JsonProperty("publishedAt")  String publishedAt,
+             @JsonProperty("updatedAt") String updatedAt,
+             @JsonProperty("featured") String featured,
+             @JsonProperty("launches")  Providers launches,
+             @JsonProperty("events") Providers events
+
+     ) {
+
+
+
+         this.id = id;
+         this.title = title;
+         this.url = url;
+         this.imageUrl = imageUrl;
+         this.newsSite = newsSite;
+         this.summary = summary;
+         this.publishedAt = publishedAt;
+         this.updatedAt = updatedAt;
+         this.featured = featured;
+         this.launches = launches;
+         this.events = events;
+
+     }
+    @JsonGetter("id")
+    public String getId() {
+        return id;
+    }
+    @JsonGetter("title")
+    public String getTitle() {
+        return title;
+    }
+    @JsonGetter("url")
+    public String getUrl() {
+        return url;
+    }
+    @JsonGetter("imageUrl")
+    public String getImageUrl() {
+        return imageUrl;
+    }
+    @JsonGetter("newSite")
+    public String getNewsSite() {
+        return newsSite;
+    }
+    @JsonGetter("summary")
+    public String getSummary() {
+        return summary;
+    }
+    @JsonGetter("publishedAt")
+    public String getPublishedAt() {
+        return publishedAt;
+    }
+    @JsonGetter("updatedAt")
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+    @JsonGetter("featured")
+    public String getFeatured() {
+        return featured;
+    }
+    @JsonGetter("launches")
+    public Providers getLaunches() {
+        return launches;
+    }
+    @JsonGetter("events")
+    public Providers getEvents() {
+        return events;
     }
 
 
