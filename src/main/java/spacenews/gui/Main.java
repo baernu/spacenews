@@ -18,11 +18,8 @@ public class Main extends Application {
 
 		try {
 			NewsController newsController = new NewsController();
-//			AuctionAdminController auctionAdminController = new AuctionAdminController();
-//			FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("auctionAdminView.fxml"
 			FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("news.fxml"
 			), I18n.getResourceBundle(new Locale("labels","de")));
-//			loader.setController(auctionAdminController);
 			loader.setController(newsController);
 			Parent root = loader.load();
 			Scene scene = new Scene(root, 600, 500);

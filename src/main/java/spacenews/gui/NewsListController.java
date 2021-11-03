@@ -21,14 +21,16 @@ import spacenews.api.GetNews;
 import spacenews.domain.Articles;
 import spacenews.domain.AuctionAdmin;
 import spacenews.domain.Providers;
+import spacenews.util.I18n;
 import spacenews.util.Observer;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Iterator;
+import java.util.Locale;
 
 public class NewsListController implements Observer {
     private  GetNews getNews;
-    //private ListView list = new ListView();
     private Iterator<Articles> iterator = null;
     private NewsController newsController;
     private static int count = 1;
@@ -41,22 +43,17 @@ public class NewsListController implements Observer {
 
 
 
-
-    /*   StringProperty header = new SimpleStringProperty();
-    header
-
-
-    title = "Articles";*/
-
     @FXML
     private HBox hBox ;
+
+    @FXML
+    private VBox vBox;
 
     @FXML
     public void initialize()  {
 
 
         listView = new ListView<>();
-        listView.getItems().add("halllo");
         listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 
@@ -64,17 +61,16 @@ public class NewsListController implements Observer {
 
 
     public NewsListController(GetNews getNews, NewsController newsController) throws IOException {
+
         this.newsController = newsController;
         this.getNews = getNews;
         iterator = getNews.getArticles().iterator();
         AuctionAdmin.getInstance().addObserver(this);
-//        nextList();
+
 
     }
 
     private void nextList(Iterator<Articles> iterator) throws IOException {
-//        title.setText(getNews.getDescription());
-//        while (iterator.hasNext()) {
             String launchesId = null;
             String launchesP = null;
             String eventsId = null;
@@ -100,18 +96,24 @@ public class NewsListController implements Observer {
                 eventsP = "events provider: " + events.getProvider();
             }
 
+        ObservableList<String> items =FXCollections.observableArrayList (
+                id, title, url, imageUrl, newsSite, summary, publishedAt, updatedAt, featured,
+                launchesId, launchesP, eventsId, eventsP);
 
-            listView = new ListView<>();
-            listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-            listView.getItems().addAll(id, title, url, imageUrl, newsSite, summary, publishedAt, updatedAt, featured,
-                    launchesId, launchesP, eventsId, eventsP);
-
-
-
-            hBox = new HBox(listView);
+        listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        listView.setItems(items);
 
 
-            newsController.load(hBox);
+
+        vBox = new VBox(listView);
+
+        Scene scene = new Scene(vBox, 500, 500);
+        Stage stage = new Stage();
+        stage.setTitle("Articles " + count);
+        stage.setScene(scene);
+        stage.show();
+        count++;
+
 
 
 
@@ -143,6 +145,9 @@ public class NewsListController implements Observer {
 
     @FXML
     void doRefresh(ActionEvent event) {
+        NewsListController.count = 1;
+        getNews.load();
+        iterator = getNews.getArticles().iterator();
 
     }
 

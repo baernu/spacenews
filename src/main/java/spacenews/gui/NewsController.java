@@ -57,37 +57,17 @@ public class NewsController implements Observer {
 
     @FXML
     void goToArticles(ActionEvent event) throws IOException {
-        getNews.setDescription("Articles");
         getNews.load();
         NewsListController newsListController = new NewsListController(getNews, this);
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("newsView.fxml"), I18n.getResourceBundle(new Locale("en")));
         loader.setController(newsListController);
         Parent root = loader.load();
-        load( root);
-
-//        Scene scene = new Scene(root, 600, 500);
-//        URL url = getClass().getClassLoader().getResource("application.css");
-//        scene.getStylesheets().add(url.toExternalForm());
-//        Stage stage = new Stage();
-//        stage.setScene(scene);
-////        stage.setTitle("Auction for " + item.toString());
-//        stage.getScene().getStylesheets().add(url.toExternalForm());
-//        stage.show();
-
-
-
-
-    }
-
-    public void load( Parent root) throws IOException {
-
-        Scene scene = new Scene(root, 600, 500);
+        Scene scene = new Scene(root, 500, 500);
         URL url = getClass().getClassLoader().getResource("application.css");
         scene.getStylesheets().add(url.toExternalForm());
         Stage stage = new Stage();
         stage.setTitle("Articles");
         stage.setScene(scene);
-//        stage.setTitle("Auction for " + item.toString());
         stage.getScene().getStylesheets().add(url.toExternalForm());
         stage.show();
     }
