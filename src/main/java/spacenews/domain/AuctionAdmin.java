@@ -10,6 +10,10 @@ import spacenews.util.Observable;
 
 public class AuctionAdmin extends Observable {
 
+
+
+
+
 	private static AuctionAdmin instance;
 	private List<Auction> auctions;
 	private List<Bidder> bidders;

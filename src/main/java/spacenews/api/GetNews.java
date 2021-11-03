@@ -15,18 +15,21 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class GetNews {
-    ClassLoader classLoader = getClass().getClassLoader();
-    public static void main(String[] args) {
+    private String description = "";
+    private List<Articles> articles = new ArrayList<>();
+//    ClassLoader classLoader = getClass().getClassLoader();
+    public void load() {
         try {
 
 
-            GetNews getNews = new GetNews();
+//            GetNews getNews = new GetNews();
 
-            File file = new File(getNews.classLoader.getResource("articles.json").getFile());
+            File file = new File(getClass().getClassLoader().getResource("articles.json").getFile());
             InputStream input = new FileInputStream(file);
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -58,7 +61,7 @@ public class GetNews {
 //            Providers launches = objectMapper.treeToValue(launchesNode);
 
 //            Articles[] cars2 = objectMapper.readValue(input, Articles[].class);
-            List<Articles> articles = objectMapper.readValue(input, new TypeReference<List<Articles>>(){});
+            articles = objectMapper.readValue(input, new TypeReference<List<Articles>>(){});
             System.out.println(articles.size());
             System.out.println(articles.get(0).getLaunches().getProvider());
 
@@ -73,4 +76,14 @@ public class GetNews {
 
     }
 
+    public List<Articles> getArticles() {
+        return this.articles;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+    public void setDescription(String string) {
+        this.description = string;
+    }
 }

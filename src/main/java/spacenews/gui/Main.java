@@ -3,6 +3,7 @@ package spacenews.gui;
 import java.net.URL;
 import java.util.Locale;
 
+import spacenews.api.GetNews;
 import spacenews.util.I18n;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -14,6 +15,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
 	public void start(Stage stage) {
+
 		try {
 			NewsController newsController = new NewsController();
 //			AuctionAdminController auctionAdminController = new AuctionAdminController();
