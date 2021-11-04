@@ -63,12 +63,6 @@ public class NewsListController implements Observer {
     @FXML
     public void initialize() throws IOException {
 
-
-//        listView = new ListView<>();
-//        listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
-//        iterator = getNews.getArticles().iterator();
-//        AuctionAdmin.getInstance().addObserver(this);
         nextList((iterator));
 
 
@@ -125,33 +119,9 @@ public class NewsListController implements Observer {
             listProperty.set(items);
             listView.itemsProperty().bind(listProperty);
 
-//        listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
-//        for (String articles : items) {
-//            listView.getItems().add(articles);
-//        }
-//        listView.setItems(items);
         countItems = items.size();
 
 
-
-
-//        vBox = new VBox(listView);
-//
-//        Scene scene = new Scene(vBox, 500, 500);
-//        Stage stage = new Stage();
-//        stage.setTitle("Articles " + count);
-//        stage.setScene(scene);
-//        stage.show();
-//        count++;
-
-
-
-
-
-
-
-//        }
     }
 
     @FXML
@@ -200,7 +170,7 @@ public class NewsListController implements Observer {
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("statisticsView.fxml"), I18n.getResourceBundle(new Locale("en")));
         loader.setController(statisticsController);
         Parent root = loader.load();
-        Scene scene = new Scene(root, 200, 200);
+        Scene scene = new Scene(root, 600, 500);
         URL url = getClass().getClassLoader().getResource("application.css");
         scene.getStylesheets().add(url.toExternalForm());
         Stage stage = new Stage();

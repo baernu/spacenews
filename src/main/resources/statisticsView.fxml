@@ -1,57 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox layoutX="250.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0">
+      <VBox layoutX="98.0" layoutY="76.0" prefHeight="164.0" prefWidth="341.0">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="60.0" prefWidth="341.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number of News" wrappingWidth="105.13671875">
                      <HBox.margin>
                         <Insets top="20.0" />
                      </HBox.margin>
                   </Text>
-                  <Label fx:id="labelTotal" prefHeight="14.0" prefWidth="82.0" text="Label">
+                  <TextField fx:id="total">
                      <HBox.margin>
-                        <Insets top="20.0" />
+                        <Insets left="20.0" top="20.0" />
                      </HBox.margin>
-                  </Label>
+                  </TextField>
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="60.0" prefWidth="341.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number of News" wrappingWidth="105.13671875">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Items" wrappingWidth="105.13671875">
                      <HBox.margin>
                         <Insets top="20.0" />
                      </HBox.margin>
                   </Text>
-                  <Label fx:id="labelItems" prefHeight="14.0" prefWidth="82.0" text="Label">
+                  <TextField fx:id="items">
                      <HBox.margin>
-                        <Insets top="20.0" />
+                        <Insets left="20.0" top="20.0" />
                      </HBox.margin>
-                  </Label>
+                  </TextField>
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="60.0" prefWidth="341.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number of News" wrappingWidth="105.13671875">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Providers" wrappingWidth="115.13671875">
                      <HBox.margin>
                         <Insets top="20.0" />
                      </HBox.margin>
                   </Text>
-                  <Label fx:id="labelProviders" prefHeight="14.0" prefWidth="82.0" text="Label">
+                  <TextField fx:id="providers">
                      <HBox.margin>
-                        <Insets top="20.0" />
+                        <Insets left="10.0" top="20.0" />
                      </HBox.margin>
-                  </Label>
+                  </TextField>
                </children>
             </HBox>
          </children>
