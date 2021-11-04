@@ -7,7 +7,7 @@ module com.spacenews {
     // FasterXML JSON library
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
-    opens spacenews.gui to javafx.graphics, javafx.fxml;
+    opens spacenews.gui to javafx.graphics, javafx.fxml, javafx.controls;
     opens spacenews.domain to com.fasterxml.jackson.databind;
 
 }
