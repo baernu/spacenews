@@ -9,20 +9,15 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import spacenews.api.GetNews;
-import spacenews.domain.Auction;
-import spacenews.domain.AuctionAdmin;
 import spacenews.domain.NewsType;
 import spacenews.util.I18n;
-import spacenews.util.Observer;
 
 import java.io.IOException;
-import java.net.URL;
-import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
-public class NewsController implements Observer {
+public class NewsController {
 
-    private GetNews getNews = new GetNews();
+    private final GetNews getNews = new GetNews();
     private NewsType newsType;
 
 
@@ -41,17 +36,10 @@ public class NewsController implements Observer {
     @FXML
     private Button language;
 
-    @FXML
-    private Button links;
 
     @FXML
     private Button reports;
 
-
-    @FXML
-    public void initialize() {
-        AuctionAdmin.getInstance().addObserver(this);
-    }
 
     @FXML
     void exit(ActionEvent event) {
@@ -72,10 +60,6 @@ public class NewsController implements Observer {
         control();
     }
 
-    @FXML
-    void goToLinks(ActionEvent event) {
-
-    }
 
     @FXML
     void goToReports(ActionEvent event) throws IOException {
@@ -89,22 +73,14 @@ public class NewsController implements Observer {
 
     }
 
-    @Override
-    public void update() {
-
-    }
     public void control() throws IOException {
         NewsListController newsListController = new NewsListController(getNews, this);
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("newsView.fxml"), I18n.getResourceBundle(new Locale("en")));
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("newsView.fxml"), I18n.getResourceBundle(new Locale("labels","de")));
         loader.setController(newsListController);
         Parent root = loader.load();
         Scene scene = new Scene(root, 500, 500);
-        URL url = getClass().getClassLoader().getResource("application.css");
-        scene.getStylesheets().add(url.toExternalForm());
         Stage stage = new Stage();
-//        stage.setTitle("Articles");
         stage.setScene(scene);
-        stage.getScene().getStylesheets().add(url.toExternalForm());
         stage.show();
     }
     public NewsType getNewsType() {

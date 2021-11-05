@@ -13,7 +13,7 @@
          <children>
             <HBox prefHeight="60.0" prefWidth="341.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number of News" wrappingWidth="105.13671875">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%News" wrappingWidth="105.13671875">
                      <HBox.margin>
                         <Insets top="20.0" />
                      </HBox.margin>
@@ -27,7 +27,7 @@
             </HBox>
             <HBox prefHeight="60.0" prefWidth="341.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Items" wrappingWidth="105.13671875">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%Items" wrappingWidth="105.13671875">
                      <HBox.margin>
                         <Insets top="20.0" />
                      </HBox.margin>
@@ -41,7 +41,7 @@
             </HBox>
             <HBox prefHeight="60.0" prefWidth="341.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Providers" wrappingWidth="115.13671875">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%Providers" wrappingWidth="115.13671875">
                      <HBox.margin>
                         <Insets top="20.0" />
                      </HBox.margin>

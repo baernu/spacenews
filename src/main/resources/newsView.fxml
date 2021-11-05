@@ -18,27 +18,27 @@
             </HBox>
             <HBox prefHeight="55.0" prefWidth="513.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#doExit" text="exit">
+                  <Button mnemonicParsing="false" onAction="#doExit" text="%exit">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" top="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#doRefresh" text="refresh">
+                  <Button mnemonicParsing="false" onAction="#doRefresh" text="%refresh">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" top="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#doNext" text="next">
+                  <Button mnemonicParsing="false" onAction="#doNext" text="%next">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" top="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#doHome" text="home">
+                  <Button mnemonicParsing="false" onAction="#doHome" text="%home">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" top="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#doStatistics" text="statistics">
+                  <Button mnemonicParsing="false" onAction="#doStatistics" text="%statistics">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" top="5.0" />
                      </HBox.margin>
