@@ -2,10 +2,7 @@ package spacenews.domain;
 
 
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.ObjectCodec;
@@ -19,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Articles {
 
     private String id;
@@ -76,6 +73,64 @@ public class Articles {
          this.events = events;
 
      }
+    @JsonCreator
+    public Articles(
+            @JsonProperty("id")  String id,
+            @JsonProperty("title") String title,
+            @JsonProperty("url") String url,
+            @JsonProperty("imageUrl")  String imageUrl,
+            @JsonProperty("newsSite") String newsSite,
+            @JsonProperty("summary") String summary,
+            @JsonProperty("publishedAt")  String publishedAt,
+            @JsonProperty("updatedAt") String updatedAt,
+            @JsonProperty("launches")  Providers launches,
+            @JsonProperty("events") Providers events
+
+    ) {
+
+
+
+        this.id = id;
+        this.title = title;
+        this.url = url;
+        this.imageUrl = imageUrl;
+        this.newsSite = newsSite;
+        this.summary = summary;
+        this.publishedAt = publishedAt;
+        this.updatedAt = updatedAt;
+        this.launches = launches;
+        this.events = events;
+
+    }
+    @JsonCreator
+    public Articles(
+            @JsonProperty("id")  String id,
+            @JsonProperty("title") String title,
+            @JsonProperty("url") String url,
+            @JsonProperty("imageUrl")  String imageUrl,
+            @JsonProperty("newsSite") String newsSite,
+            @JsonProperty("summary") String summary,
+            @JsonProperty("publishedAt")  String publishedAt,
+            @JsonProperty("updatedAt") String updatedAt
+
+
+    ) {
+
+
+
+        this.id = id;
+        this.title = title;
+        this.url = url;
+        this.imageUrl = imageUrl;
+        this.newsSite = newsSite;
+        this.summary = summary;
+        this.publishedAt = publishedAt;
+        this.updatedAt = updatedAt;
+
+    }
+
+
+
     @JsonGetter("id")
     public String getId() {
         return id;

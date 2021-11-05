@@ -23,14 +23,19 @@ public class GetNews {
     private String description = "";
     private List<Articles> articles = new ArrayList<>();
 //    ClassLoader classLoader = getClass().getClassLoader();
-    public void load() {
+
+
+
+    public void load(String input) {
         try {
 
 
 //            GetNews getNews = new GetNews();
 
-            File file = new File(getClass().getClassLoader().getResource("articles.json").getFile());
-            InputStream input = new FileInputStream(file);
+//            File file = new File(getClass().getClassLoader().getResource("articles.json").getFile());
+//            InputStream input = new FileInputStream(file);
+
+
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             SimpleModule module = new SimpleModule();
@@ -62,8 +67,8 @@ public class GetNews {
 
 //            Articles[] cars2 = objectMapper.readValue(input, Articles[].class);
             articles = objectMapper.readValue(input, new TypeReference<List<Articles>>(){});
-            System.out.println(articles.size());
-            System.out.println(articles.get(0).getLaunches().getProvider());
+//            System.out.println(articles.size());
+//            System.out.println(articles.get(0).getLaunches().getProvider());
 
 
 

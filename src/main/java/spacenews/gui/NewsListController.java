@@ -89,6 +89,8 @@ public class NewsListController implements Observer {
             String launchesP = null;
             String eventsId = null;
             String eventsP = null;
+            Providers launches = null;
+            Providers events = null;
             actualIerator = iterator.next();
             String id = "id: " + actualIerator.getId();
             String title = "title: " + actualIerator.getTitle();
@@ -99,18 +101,28 @@ public class NewsListController implements Observer {
             String publishedAt = "publishedAt: " + actualIerator.getPublishedAt();
             String updatedAt = "updatedAT: " + actualIerator.getUpdatedAt();
             String featured = "featured: " +actualIerator.getFeatured();
-            Providers launches = actualIerator.getLaunches();
-            if (launches.getId() != null) {
-                launchesId = "laungches id: " + launches.getId();
-                launchesP = "launches provider: " + launches.getProvider();
-                countProvider++;
+            if (actualIerator.getLaunches() != null) {
+                launches = actualIerator.getLaunches();
             }
-            Providers events = actualIerator.getEvents();
-            if (events.getId() != null) {
-                eventsId = "events id: " + events.getId();
-                eventsP = "events provider: " + events.getProvider();
-                countProvider++;
+            if (launches != null) {
+                if (launches.getId() != null) {
+                    launchesId = "laungches id: " + launches.getId();
+                    launchesP = "launches provider: " + launches.getProvider();
+                    countProvider++;
+                }
             }
+
+            if (actualIerator.getEvents() != null) {
+                events = actualIerator.getEvents();
+            }
+            if (events != null) {
+                if (events.getId() != null) {
+                    eventsId = "events id: " + events.getId();
+                    eventsP = "events provider: " + events.getProvider();
+                    countProvider++;
+                }
+            }
+
 
         ObservableList<String> items =FXCollections.observableArrayList (
                 id, title, url, imageUrl, newsSite, summary, publishedAt, updatedAt, featured,
@@ -147,7 +159,7 @@ public class NewsListController implements Observer {
     @FXML
     void doRefresh(ActionEvent event) {
         NewsListController.count = 1;
-        getNews.load();
+        getNews.load(newsController.getInput());
         iterator = getNews.getArticles().iterator();
 
     }

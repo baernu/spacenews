@@ -1,5 +1,6 @@
 package spacenews.domain;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -9,6 +10,8 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
 import java.io.IOException;
 
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ArticlesDeserializer extends StdDeserializer<Articles> {
 
 
@@ -22,6 +25,9 @@ public class ArticlesDeserializer extends StdDeserializer<Articles> {
 
       @Override
     public Articles deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JacksonException {
+        String featured = null;
+        JsonNode launchesNode = null;
+        JsonNode eventsNode = null;
         JsonNode node = jp.getCodec().readTree(jp);
         String id = node.get("id").asText();
         String title = node.get("title").asText();
@@ -31,29 +37,49 @@ public class ArticlesDeserializer extends StdDeserializer<Articles> {
         String summary = node.get("summary").asText();
         String publishedAt = node.get("publishedAt").asText();
         String updatedAt = node.get("updatedAt").asText();
-        String featured = node.get("featured").asText();
-        JsonNode launchesNode = node.get("launches");
+        if (node.get("featured") != null) {
+            featured = node.get("featured").asText();
+        }
+        if (node.get("launches") != null) {
+            launchesNode = node.get("launches");
+        }
+
 //        JsonNode launchesId = launchesNode.findPath("id");
 //        JsonNode launchesProvider = launchesNode.findPath("provider");
+        if (node.get("events") != null) {
+            eventsNode = node.get("events");
+        }
 
-        JsonNode eventsNode = node.get("events");
         Providers launches = null;
         Providers events = null;
-        if (launchesNode.findPath("id") != null) {
-            String idl = launchesNode.findPath("id").asText();
-            String provider = launchesNode.findPath("provider").asText();
-            launches = new Providers(idl,provider);
+        if (launchesNode != null) {
+            if (launchesNode.findPath("id") != null) {
+                String idl = launchesNode.findPath("id").asText();
+                String provider = launchesNode.findPath("provider").asText();
+                launches = new Providers(idl, provider);
+            }
 
         }
-        if (eventsNode.findPath("id") != null) {
-            String ide = eventsNode.findPath("id").asText();
-            String provider = eventsNode.findPath("provider").asText();
-            events = new Providers(ide, provider);
+        if (eventsNode != null) {
+            if (eventsNode.findPath("id") != null) {
+                String ide = eventsNode.findPath("id").asText();
+                String provider = eventsNode.findPath("provider").asText();
+                events = new Providers(ide, provider);
+            }
         }
 
 
+        if (featured != null) {
+            return new Articles(id, title, url, imageUrl, newsSite, summary, publishedAt, updatedAt, featured, launches, events);
+        }
+        if (featured == null && launches != null) {
+            return new Articles(id, title, url, imageUrl, newsSite, summary, publishedAt, updatedAt, launches, events);
+        }
+        if (launches == null) {
+              return new Articles(id, title, url, imageUrl, newsSite, summary, publishedAt, updatedAt);
+          }
 
-        return new Articles(id, title, url, imageUrl, newsSite, summary, publishedAt, updatedAt, featured, launches, events);
+        return null;
 
     }
 

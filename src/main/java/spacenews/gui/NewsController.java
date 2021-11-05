@@ -22,6 +22,7 @@ import java.util.Locale;
 public class NewsController implements Observer {
 
     private GetNews getNews = new GetNews();
+    private String input;
 
     @FXML
     private AnchorPane root;
@@ -44,6 +45,9 @@ public class NewsController implements Observer {
     @FXML
     private Button reports;
 
+    public NewsController(String input) {
+        this.input = input;
+    }
 
     @FXML
     public void initialize() {
@@ -57,7 +61,7 @@ public class NewsController implements Observer {
 
     @FXML
     void goToArticles(ActionEvent event) throws IOException {
-        getNews.load();
+        getNews.load(input);
         NewsListController newsListController = new NewsListController(getNews, this);
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("newsView.fxml"), I18n.getResourceBundle(new Locale("en")));
         loader.setController(newsListController);
@@ -95,5 +99,9 @@ public class NewsController implements Observer {
     @Override
     public void update() {
 
+    }
+
+    public String getInput() {
+        return this.input;
     }
 }

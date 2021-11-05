@@ -77,9 +77,10 @@ public class StatisticsController implements Observer {
     public void initialize() throws IOException {
         totalArticles.setValue(String.valueOf(newsListController.getCountArticles()));
         totalItems.setValue(String.valueOf(newsListController.getCountItems()));
-        totalProviders.setValue(String.valueOf(newsListController.getCountProvider()));
+
         total.textProperty().bindBidirectional(totalArticles);
         items.textProperty().bind(totalItems);
+        totalProviders.setValue(String.valueOf(newsListController.getCountProvider()));
         providers.textProperty().bind(totalProviders);
 
     }
