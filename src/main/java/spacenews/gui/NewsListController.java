@@ -26,6 +26,7 @@ import spacenews.catalog.AuctionItem;
 import spacenews.catalog.ItemStatus;
 import spacenews.domain.Articles;
 import spacenews.domain.AuctionAdmin;
+import spacenews.domain.NewsType;
 import spacenews.domain.Providers;
 import spacenews.util.I18n;
 import spacenews.util.Observer;
@@ -159,7 +160,7 @@ public class NewsListController implements Observer {
     @FXML
     void doRefresh(ActionEvent event) {
         NewsListController.count = 1;
-        getNews.load(newsController.getInput());
+        getNews.load(newsController.getNewsType());
         iterator = getNews.getArticles().iterator();
 
     }
@@ -186,7 +187,7 @@ public class NewsListController implements Observer {
         URL url = getClass().getClassLoader().getResource("application.css");
         scene.getStylesheets().add(url.toExternalForm());
         Stage stage = new Stage();
-        stage.setTitle("Statistics");
+//        stage.setTitle("Statistics");
         stage.setScene(scene);
         stage.getScene().getStylesheets().add(url.toExternalForm());
         stage.show();

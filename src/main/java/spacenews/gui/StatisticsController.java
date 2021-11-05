@@ -47,26 +47,7 @@ public class StatisticsController implements Observer {
     @FXML
     private TextField total;
 
-//    @FXML
-//    private AnchorPane root;
-//
-//    @FXML
-//    private Label labelItems;
-//
-//    @FXML
-//    private Label labelProviders;
-//
-//    @FXML
-//    private Label labelTotal;
-//
-//    @FXML
-//    private HBox h1;
-//
-//    @FXML
-//    private HBox h2;
-//
-//    @FXML
-//    private HBox h3;
+
 
     @Override
     public void update() {

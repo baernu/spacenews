@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import spacenews.api.GetNews;
 import spacenews.domain.Auction;
 import spacenews.domain.AuctionAdmin;
+import spacenews.domain.NewsType;
 import spacenews.util.I18n;
 import spacenews.util.Observer;
 
@@ -22,7 +23,8 @@ import java.util.Locale;
 public class NewsController implements Observer {
 
     private GetNews getNews = new GetNews();
-    private String input;
+    private NewsType newsType;
+
 
     @FXML
     private AnchorPane root;
@@ -45,9 +47,6 @@ public class NewsController implements Observer {
     @FXML
     private Button reports;
 
-    public NewsController(String input) {
-        this.input = input;
-    }
 
     @FXML
     public void initialize() {
@@ -61,24 +60,16 @@ public class NewsController implements Observer {
 
     @FXML
     void goToArticles(ActionEvent event) throws IOException {
-        getNews.load(input);
-        NewsListController newsListController = new NewsListController(getNews, this);
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("newsView.fxml"), I18n.getResourceBundle(new Locale("en")));
-        loader.setController(newsListController);
-        Parent root = loader.load();
-        Scene scene = new Scene(root, 500, 500);
-        URL url = getClass().getClassLoader().getResource("application.css");
-        scene.getStylesheets().add(url.toExternalForm());
-        Stage stage = new Stage();
-        stage.setTitle("Articles");
-        stage.setScene(scene);
-        stage.getScene().getStylesheets().add(url.toExternalForm());
-        stage.show();
+        newsType = NewsType.Article;
+        getNews.load(NewsType.Article);
+        control();
     }
 
     @FXML
-    void goToBlogs(ActionEvent event) {
-
+    void goToBlogs(ActionEvent event) throws IOException {
+        newsType = NewsType.Blog;
+        getNews.load(NewsType.Blog);
+        control();
     }
 
     @FXML
@@ -87,8 +78,10 @@ public class NewsController implements Observer {
     }
 
     @FXML
-    void goToReports(ActionEvent event) {
-
+    void goToReports(ActionEvent event) throws IOException {
+        newsType = NewsType.Report;
+        getNews.load(NewsType.Report);
+        control();
     }
 
     @FXML
@@ -100,8 +93,21 @@ public class NewsController implements Observer {
     public void update() {
 
     }
-
-    public String getInput() {
-        return this.input;
+    public void control() throws IOException {
+        NewsListController newsListController = new NewsListController(getNews, this);
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("newsView.fxml"), I18n.getResourceBundle(new Locale("en")));
+        loader.setController(newsListController);
+        Parent root = loader.load();
+        Scene scene = new Scene(root, 500, 500);
+        URL url = getClass().getClassLoader().getResource("application.css");
+        scene.getStylesheets().add(url.toExternalForm());
+        Stage stage = new Stage();
+//        stage.setTitle("Articles");
+        stage.setScene(scene);
+        stage.getScene().getStylesheets().add(url.toExternalForm());
+        stage.show();
+    }
+    public NewsType getNewsType() {
+        return this.newsType;
     }
 }

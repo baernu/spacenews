@@ -15,7 +15,7 @@
                <children>
                   <HBox prefHeight="44.0" prefWidth="636.0">
                      <children>
-                        <Label prefHeight="44.0" prefWidth="252.0" text="    Home:  Space News Reader" />
+                        <Label prefHeight="44.0" prefWidth="252.0" text="      Space News Reader" />
                      </children>
                   </HBox>
                </children>
