@@ -167,7 +167,7 @@ public class NewsListController {
     @FXML
     void doStatistics(ActionEvent event) throws IOException {
         StatisticsController statisticsController = new StatisticsController(this);
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("statisticsView.fxml"), I18n.getResourceBundle(new Locale("de")));
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("statisticsView.fxml"), I18n.getResourceBundle(Main.getLocale()));
         loader.setController(statisticsController);
         Parent root = loader.load();
         Scene scene = new Scene(root, 600, 500);

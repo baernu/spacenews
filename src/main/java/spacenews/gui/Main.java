@@ -11,23 +11,37 @@ import javafx.stage.Stage;
 
 
 public class Main extends Application {
+	private static Locale locale = new Locale("en");
+	private static Stage stage;
+
+
+	public static void setLocale(Locale locale) {
+		Main.locale = locale;
+	}
+
+	public static Locale getLocale() {
+		return locale;
+	}
+
+	public static Stage getStage() {
+		return Main.stage;
+	}
 
 	public void start(Stage stage) {
 
 
 
 		try {
-			NewsController newsController = new NewsController();
-			FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("news.fxml"
-			), I18n.getResourceBundle(new Locale("labels","de")));
-			loader.setController(newsController);
-			Parent root = loader.load();
-			Scene scene = new Scene(root, 600, 500);
-
-
-
+			Main.stage = stage;
+			LanguageController languageController = new LanguageController();
+			FXMLLoader loader1 = new FXMLLoader(getClass().getClassLoader().getResource("languageView.fxml"
+			), I18n.getResourceBundle(locale));
+			loader1.setController(languageController);
+			Parent root = loader1.load();
+			Scene scene = new Scene(root, 200, 200);
 			stage.setScene(scene);
 			stage.show();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -32,9 +32,7 @@ public class NewsController {
 
     @FXML
     private Button exitHome;
-
-    @FXML
-    private Button language;
+    
 
 
     @FXML
@@ -68,14 +66,10 @@ public class NewsController {
         control();
     }
 
-    @FXML
-    void setLanguage(ActionEvent event) {
-
-    }
 
     public void control() throws IOException {
         NewsListController newsListController = new NewsListController(getNews, this);
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("newsView.fxml"), I18n.getResourceBundle(new Locale("labels","de")));
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("newsView.fxml"), I18n.getResourceBundle(Main.getLocale()));
         loader.setController(newsListController);
         Parent root = loader.load();
         Scene scene = new Scene(root, 500, 500);

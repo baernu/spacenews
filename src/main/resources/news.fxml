@@ -58,11 +58,6 @@
                         <Insets left="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="language" mnemonicParsing="false" onAction="#setLanguage" text="%Language">
-                     <HBox.margin>
-                        <Insets left="50.0" />
-                     </HBox.margin>
-                  </Button>
                </children>
             </HBox>
          </children>
