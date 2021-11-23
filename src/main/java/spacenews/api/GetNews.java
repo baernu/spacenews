@@ -53,7 +53,6 @@ public class GetNews {
             response = httpClient.execute(request);
             HttpEntity entity = response.getEntity();
             if (entity != null) {
-                // return it as a String
                 input = EntityUtils.toString(entity);
             }
 
@@ -75,7 +74,7 @@ public class GetNews {
             articles = objectMapper.readValue(input, new TypeReference<List<Articles>>(){});
 
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

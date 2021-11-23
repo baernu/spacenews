@@ -32,7 +32,7 @@ public class NewsController {
 
     @FXML
     private Button exitHome;
-    
+
 
 
     @FXML
@@ -67,15 +67,21 @@ public class NewsController {
     }
 
 
-    public void control() throws IOException {
-        NewsListController newsListController = new NewsListController(getNews, this);
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("newsView.fxml"), I18n.getResourceBundle(Main.getLocale()));
-        loader.setController(newsListController);
-        Parent root = loader.load();
-        Scene scene = new Scene(root, 500, 500);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
+    public void control()  {
+
+        try {
+            NewsListController newsListController = new NewsListController(getNews, this);
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("newsView.fxml"), I18n.getResourceBundle(Main.getLocale()));
+            loader.setController(newsListController);
+            Parent root = loader.load();
+            Scene scene = new Scene(root, 500, 500);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
     public NewsType getNewsType() {
         return this.newsType;

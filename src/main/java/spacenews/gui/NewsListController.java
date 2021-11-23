@@ -115,11 +115,10 @@ public class NewsListController {
         ObservableList<String> items =FXCollections.observableArrayList (
                 id, title, url, imageUrl, newsSite, summary, publishedAt, updatedAt, featured,
                 launchesId, launchesP, eventsId, eventsP);
-
             listProperty.set(items);
             listView.itemsProperty().bind(listProperty);
 
-        countItems = items.size();
+            countItems = items.size();
 
 
     }
@@ -165,15 +164,20 @@ public class NewsListController {
     }
 
     @FXML
-    void doStatistics(ActionEvent event) throws IOException {
-        StatisticsController statisticsController = new StatisticsController(this);
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("statisticsView.fxml"), I18n.getResourceBundle(Main.getLocale()));
-        loader.setController(statisticsController);
-        Parent root = loader.load();
-        Scene scene = new Scene(root, 600, 500);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
+    void doStatistics(ActionEvent event)  {
+        try {
+            StatisticsController statisticsController = new StatisticsController(this);
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("statisticsView.fxml"), I18n.getResourceBundle(Main.getLocale()));
+            loader.setController(statisticsController);
+            Parent root = loader.load();
+            Scene scene = new Scene(root, 600, 500);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

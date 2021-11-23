@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import spacenews.util.I18n;
 
+import java.io.IOException;
 import java.util.Locale;
 
 public class LanguageController {
@@ -36,7 +37,7 @@ public class LanguageController {
             Scene scene = new Scene(root, 600, 500);
             Main.getStage().setScene(scene);
             Main.getStage().show();
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

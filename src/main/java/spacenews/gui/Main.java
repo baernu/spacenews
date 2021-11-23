@@ -1,6 +1,9 @@
 package spacenews.gui;
 
+import java.io.IOException;
 import java.util.Locale;
+import java.util.MissingResourceException;
+
 import spacenews.util.I18n;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -28,21 +31,23 @@ public class Main extends Application {
 	}
 
 	public void start(Stage stage) {
+		FXMLLoader loader1 = null;
 
-
-
+		Main.stage = stage;
+		LanguageController languageController = new LanguageController();
 		try {
-			Main.stage = stage;
-			LanguageController languageController = new LanguageController();
-			FXMLLoader loader1 = new FXMLLoader(getClass().getClassLoader().getResource("languageView.fxml"
-			), I18n.getResourceBundle(locale));
+			loader1 = new FXMLLoader(getClass().getClassLoader().getResource("languageView.fxml"
+				), I18n.getResourceBundle(locale));
+		} catch (MissingResourceException e) {
+				e.printStackTrace();
+		}
+		try {
 			loader1.setController(languageController);
 			Parent root = loader1.load();
 			Scene scene = new Scene(root, 200, 200);
 			stage.setScene(scene);
 			stage.show();
-
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
